@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>3번주자가 수정했어요</h1>
+
+	<h1> 2번 주자 왔다감 </h1>
+
 </body>
 </html>
