@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> 2번 주자 왔다갔음 </h1>
+	<h1> 제우 테스트 커밋</h1>
 </body>
 </html>
