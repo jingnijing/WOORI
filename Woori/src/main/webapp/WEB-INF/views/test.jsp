@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> 테스트 제우 </h1>
+	<tr>
+	<td> <img src="images/image.png"> </td>
+	</tr>
 </body>
 </html>
