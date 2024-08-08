@@ -8,7 +8,7 @@
 </head>
 <body>
 	<tr>
-	<td> <img src="images/image.png"> </td>
+	<td> test <img src="images/image.png"> </td>
 	</tr>
 </body>
 </html>
