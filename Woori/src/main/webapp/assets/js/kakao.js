@@ -2,6 +2,7 @@
     Kakao.Auth.authorize({
       redirectUri: 'http://localhost:8081/Woori/kakaoLogin',
     });
+    
   }
 
   // 아래는 데모를 위한 UI 코드입니다.

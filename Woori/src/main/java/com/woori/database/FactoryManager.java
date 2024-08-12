@@ -1,4 +1,4 @@
-package com.koha.database;
+package com.woori.database;
 
 import java.io.InputStream;
 
@@ -18,7 +18,7 @@ public class FactoryManager {
 		// 서버가 실행되자마자 함께 시작됨
 		
 		try {
-			String resource = "com/koha/database/config.xml";
+			String resource = "com/woori/database/config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (Exception e) {
