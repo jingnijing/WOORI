@@ -5,13 +5,13 @@
 <insert id="join" parameterType="com.woori.entity.Tb_login">
 		INSERT INTO tb_login
 		(login_email, login_nick, login_src, joined_ad, id_key) 
-		VALUES (#{login_email}, #{login_nick}, #{login_src}, SYSDATE, #{id_key});
+		VALUES (#{login_email}, #{login_nick}, #{login_src}, SYSDATE, #{id_key})
 	</insert>
 
 
 <select id="login" parameterType="com.woori.entity.Tb_login" resultType="com.woori.entity.Tb_login">
 		select *
-		from member
+		from tb_login
 		where id_key = #{id_key}
 	</select>
 
