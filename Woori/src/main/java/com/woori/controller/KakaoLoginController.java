@@ -32,12 +32,12 @@ public class KakaoLoginController extends HttpServlet {
         if(res != null) {
         	// 세션 생성
 			System.out.println("login success");
-            request.getSession().setAttribute("User", res);
-            response.sendRedirect("/woori/main.jsp");
+            request.getSession().setAttribute("user", res);
+            response.sendRedirect("WEB-INF/views/main.jsp");
         }else {
         	System.out.println("login fail");
-            request.getSession().setAttribute("User", login);
-        	response.sendRedirect("join");
+            request.getSession().setAttribute("user", login);
+        	response.sendRedirect("WEB-INF/views/join.jsp");
         }
         
         
