@@ -1,1 +1,1 @@
-create table 
+select * from TB_LOGIN;
