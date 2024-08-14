@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.woori.dao.LoginDAO;
 import com.woori.entity.Tb_login;
 
@@ -34,18 +35,16 @@ public class KakaoLoginController extends HttpServlet {
 		Tb_login res = dao.login(login);
 
 		String url = "";
-		HttpSession session = request.getSession();
-		if (res != null) {
-			// 세션 생성
-			System.out.println("login success");
-			session.setAttribute("user", res);
-		} else {
-			System.out.println("login fail");
-		}
-		url = "WEB-INF/views/main.jsp";
-		
-		RequestDispatcher rd = request.getRequestDispatcher(url);
-		rd.forward(request, response);
+		 HttpSession session = request.getSession();
+	        response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
 
+	        if (res != null) {
+	            session.setAttribute("user", res);
+	            response.getWriter().write(new Gson().toJson("success"));
+	        } else {
+	            session.setAttribute("user", login);
+	            response.getWriter().write(new Gson().toJson("fail"));
+	        }
+	    }
 	}
-}

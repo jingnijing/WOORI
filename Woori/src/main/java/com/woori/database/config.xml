@@ -17,5 +17,7 @@
   </environments>
   <mappers>
     <mapper resource="com/woori/dao/LoginMapper.xml"/>
+    <mapper resource="com/woori/dao/PetMapper.xml"/>
+    
   </mappers>
 </configuration>

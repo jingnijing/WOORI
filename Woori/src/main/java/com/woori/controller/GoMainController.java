@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GoMainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/WEB-INF/views/main.jsp";
+		String url = "WEB-INF/views/main.jsp";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
