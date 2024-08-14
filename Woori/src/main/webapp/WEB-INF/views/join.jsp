@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +8,10 @@
 </head>
 <body>
 
-<form action="join">
-<input type="text" placeholder="»ç¿ëÇÏ½Ç ´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä">
-<button type="submit"></button>
+<form action="join" method="post" accept-charset="utf-8">
+    <input name="nick" type="text" placeholder="ì‚¬ìš©í•˜ì‹¤ ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”">
+    <button type="submit">Submit</button>
 </form>
-
 
 </body>
 </html>

@@ -30,11 +30,12 @@ public class KakaoLoginController extends HttpServlet {
 		Tb_login login = new Tb_login();
 		login.setId_key(kakaoId);
 		login.setLogin_email(kakaoEmail);
+		login.setLogin_src(kakaoEmail);
 
 		LoginDAO dao = new LoginDAO();
 		Tb_login res = dao.login(login);
 
-		String url = "";
+		
 		 HttpSession session = request.getSession();
 	        response.setContentType("application/json");
 	        response.setCharacterEncoding("UTF-8");

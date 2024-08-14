@@ -19,7 +19,7 @@ public class LoginDAO {
 	
 	public int join(Tb_login login) {
 		SqlSession session = factory.openSession(true);
-		int result = session.insert("join",login);
+		int result = session.insert("insert",login);
 		session.close();
 		return result;
 	}

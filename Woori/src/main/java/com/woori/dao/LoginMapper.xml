@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.woori.dao.LoginDAO">
 
-<insert id="join" parameterType="com.woori.entity.Tb_login">
+<insert id="insert" parameterType="com.woori.entity.Tb_login">
 		INSERT INTO tb_login
 		(login_email, login_nick, login_src, joined_ad, id_key) 
 		VALUES (#{login_email}, #{login_nick}, #{login_src}, SYSDATE, #{id_key})
 	</insert>
 
 
-<select id="login" parameterType="com.woori.entity.Tb_login" resultType="com.woori.entity.Tb_login">
+<select id="login" resultType="com.woori.entity.Tb_login">
 		select *
 		from tb_login
 		where id_key = #{id_key}

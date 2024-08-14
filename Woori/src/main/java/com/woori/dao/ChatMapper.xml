@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woori.dao.ChatMapper">
+
+<insert id="chatting" parameterType="com.woori.entity.Tb_pet">
+
+INSERT INTO tb_chat
+    (chatter, 
+    chatting, 
+    chat_file, 
+    created_at, 
+    croom_owner)
+VALUES
+    (#{chatter}, 
+    #{chatting}, 
+    #{chat_file}, 
+    sysdate, 
+    #{croom_owner})
+
+	</insert>
+
+
+<select id="allChat" parameterType="com.woori.entity.Tb_pet" resultType="com.woori.entity.Tb_pet">
+	select * from tb_chat
+	where #{croom_owner}
+	</select>
+
+
+
+
+
+
+</mapper>
