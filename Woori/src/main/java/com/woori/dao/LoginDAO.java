@@ -10,9 +10,16 @@ public class LoginDAO {
 
 	private SqlSessionFactory factory = FactoryManager.getSqlSessionFactory();
 	
-	public Tb_login login(Tb_login tb_login) {
+	public Tb_login login(Tb_login login) {
 		SqlSession session = factory.openSession(true);
-		Tb_login result = session.selectOne("login", tb_login);
+		Tb_login result = session.selectOne("login", login);
+		session.close();
+		return result;
+	}
+	
+	public int join(Tb_login login) {
+		SqlSession session = factory.openSession(true);
+		int result = session.insert("join",login);
 		session.close();
 		return result;
 	}
