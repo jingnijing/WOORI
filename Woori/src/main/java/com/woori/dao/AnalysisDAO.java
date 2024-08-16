@@ -1,5 +1,5 @@
 package com.woori.dao;
 
-public class ChatDAO {
+public class AnalysisDAO {
 
 }

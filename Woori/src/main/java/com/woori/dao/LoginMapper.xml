@@ -4,8 +4,18 @@
 
 <insert id="insert" parameterType="com.woori.entity.Tb_login">
 		INSERT INTO tb_login
-		(login_email, login_nick, login_src, joined_ad, id_key) 
-		VALUES (#{login_email}, #{login_nick}, #{login_src}, SYSDATE, #{id_key})
+		(login_email,
+		login_nick,
+		login_src,
+		joined_ad,
+		id_key) 
+		VALUES
+		(#{login_email},
+		#{login_nick},
+		#{login_src},
+		SYSDATE,
+		#{id_key})
+		
 	</insert>
 
 

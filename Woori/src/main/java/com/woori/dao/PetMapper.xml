@@ -1,47 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.woori.dao.PetDAO">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<insert id="join" parameterType="com.woori.entity.Tb_pet">
-		INSERT INTO tb_pet
-		(pet_name,
-		pet_birthdate,
-		pet_weight,
-		pet_gender,
-		adopted_at,
-		pet_img1,
-		pet_img2,
-		pet_img3,
-		login_email)
-		VALUES
-		(#{pet_name},
-		#{pet_birthdate},
-		#{pet_weight},
-		#{pet_gender},
-		sysdate,
-		#{pet_img1},
-		#{pet_img2},
-		#{pet_img3},
-		#{login_email});
-	</insert>
+<mapper namespace="com.woori.dao.ChatDAO">
 
-	<update id="update" parameterType="com.woori.entity.Tb_pet">
-		UPDATE tb_pet
-		SET
-		pet_name = #{pet_name},
-		pet_birthdate = #{pet_birthdate},
-		pet_weight = #{pet_weight} ,
-		pet_gender = #{pet_gender},
-		pet_img1 = #{pet_img1},
-		pet_img2 = #{pet_img2},
-		pet_img3 = #{pet_img3},
-		login_email = #{login_email}
-		WHERE pet_idx = #{pet_idx};
-	</update>
+    <insert id="chatting" parameterType="com.woori.entity.Tb_chat">
+        <!-- 새로운 채팅 데이터를 데이터베이스의 tb_chat 테이블에 삽입 -->
+        INSERT INTO tb_chat
+            (chatter, 
+            chatting, 
+            chat_file, 
+            created_at, 
+            croom_owner)
+        VALUES
+            (#{chatter}, 
+            #{chatting}, 
+            #{chat_file}, 
+            sysdate, 
+            #{croom_owner})
+    </insert>
 
-	<delete id="delete">
-	DELETE FROM tb_pet
-	WHERE pet_idx = #{pet_idx};
-	</delete>
+    <select id="allChat" parameterType="com.woori.entity.Tb_chat" resultType="com.woori.entity.Tb_chat">
+        <!-- 특정 채팅방 소유자의 모든 채팅을 tb_chat 테이블에서 조회 -->
+        select *
+        from tb_chat
+        where croom_owner = #{croom_owner}
+        ORDER BY created_at ASC
+    </select>
 
 </mapper>
+

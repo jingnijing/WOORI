@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,10 @@
 </head>
 <body>
 
-<p>로그인에 실패했습니다</p>
+	<!-- 메인으로 돌아가는 버튼 -->
+	<a href="main">
+		<button>woori</button>
+	</a>
 
 </body>
 </html>
