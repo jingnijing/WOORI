@@ -1,5 +1,7 @@
 package com.woori.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -11,25 +13,19 @@ public class PetDAO {
 
 private SqlSessionFactory factory = FactoryManager.getSqlSessionFactory();
 	
-	public Tb_pet my_pet(Tb_login user) {
-		SqlSession session = factory.openSession(true);
-		Tb_pet result = session.selectOne("my_pet", user.getLogin_email());
-		session.close();
-		return result;
-	}
 	
 	public int new_pet(Tb_pet pet) {
 		SqlSession session = factory.openSession(true);
-		int result = session.insert("join",pet);
+		int result = session.insert("newPet",pet);
 		session.close();
 		return result;
 	}
 	
-	public int update_pet(Tb_pet pet) {
+	public List<Tb_pet> my_pet(Tb_login login) {
 		SqlSession session = factory.openSession(true);
-        int result = session.update("update",pet);
+        List<Tb_pet> list = session.selectList("myPet",login.getLogin_email());
         session.close();
-        return result;
+        return list;
 	}
 	
 	

@@ -26,4 +26,10 @@ VALUES
 	)
 </insert>
 
+<select id="care">
+SELECT * 
+FROM tb_care
+where pet_idx = #{pet_idx}
+</select>
+
 </mapper>

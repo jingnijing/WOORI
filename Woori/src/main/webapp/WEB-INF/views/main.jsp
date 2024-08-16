@@ -23,7 +23,7 @@
 	</a>
 
 	<!-- 일기장으로 가는 버튼 -->
-	<a href="goDairy">
+	<a href="dairy">
 		<button>Dairy</button>
 	</a>
 

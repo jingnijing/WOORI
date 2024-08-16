@@ -4,29 +4,37 @@
 
 <mapper namespace="com.woori.dao.ChatDAO">
 
-    <insert id="chatting" parameterType="com.woori.entity.Tb_chat">
-        <!-- 새로운 채팅 데이터를 데이터베이스의 tb_chat 테이블에 삽입 -->
-        INSERT INTO tb_chat
-            (chatter, 
-            chatting, 
-            chat_file, 
-            created_at, 
-            croom_owner)
-        VALUES
-            (#{chatter}, 
-            #{chatting}, 
-            #{chat_file}, 
-            sysdate, 
-            #{croom_owner})
-    </insert>
+	<insert id="newPet" parameterType="com.woori.entity.Tb_pet">
+		INSERT INTO tb_pet
+		(pet_name,
+		pet_birthdate,
+		pet_weight,
+		pet_gender,
+		adopted_at,
+		pet_img1,
+		pet_img2,
+		pet_img3,
+		login_email)
+		VALUES
+		(
+		#{pet_name},
+		#{pet_birthdate},
+		#{pet_weight},
+		#{pet_gender},
+		#{adopted_at},
+		#{pet_img1},
+		#{pet_img2},
+		#{pet_img3},
+		#{login_email}
+		)
+		
+	</insert>
 
-    <select id="allChat" parameterType="com.woori.entity.Tb_chat" resultType="com.woori.entity.Tb_chat">
-        <!-- 특정 채팅방 소유자의 모든 채팅을 tb_chat 테이블에서 조회 -->
-        select *
-        from tb_chat
-        where croom_owner = #{croom_owner}
-        ORDER BY created_at ASC
-    </select>
+	<select id="myPet" resultType="com.woori.entity.Tb_pet">
+		select *
+		from tb_pet
+		where login_email = #{login_email}
+	</select>
 
 </mapper>
 
