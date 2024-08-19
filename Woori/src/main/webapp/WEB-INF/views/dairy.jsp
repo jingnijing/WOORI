@@ -1,36 +1,39 @@
 <%@page import="com.woori.entity.Tb_pet"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 	
-	<!-- ¸ÞÀÎÀ¸·Î µ¹¾Æ°¡´Â ¹öÆ° -->
+	<!-- ë©”ì¸ìœ¼ë¡œ ëŒì•„ê°€ëŠ” ë²„íŠ¼ -->
 	<a href="main">
 		<button>woori</button>
 	</a>
 
 <%List<Tb_pet> pet =  (List<Tb_pet>)request.getAttribute("pet"); %>
 
+
+<%if(pet!=null){ %>
 <% for(Tb_pet x : pet){ %>
 				<tr>
-					<td>ÀÌ¸§ : <%=x.getPet_name() %></td>
-					<td>¹«°Ô : <%=x.getPet_weight() %></td>
-					<td>¼ºº° : <%=x.getPet_gender() %></td>
-					<td>»ýÀÏ : <%=x.getPet_birthdate() %></td>
-					<td>ÀÔ¾çÀÏ : <%=x.getAdopted_at() %></td>
-					<td>»çÁø1 : <%=x.getPet_img1() %></td>
-					<td>»çÁø2 : <%=x.getPet_img2() %></td>
-					<td>»çÁø3 : <%=x.getPet_img3() %></td>
-					<td><a href="care?idx=<%=x.getPet_idx() %>"></a> µ¹º½Çàµ¿ </a></td>
+					<td>ì´ë¦„ : <%=x.getPet_name() %></td>
+					<td>ë¬´ê²Œ : <%=x.getPet_weight() %></td>
+					<td>ì„±ë³„ : <%=x.getPet_gender() %></td>
+					<td>ìƒì¼ : <%=x.getPet_birthdate() %></td>
+					<td>ìž…ì–‘ì¼ : <%=x.getAdopted_at() %></td>
+					<td>ì‚¬ì§„1 : <%=x.getPet_img1() %></td>
+					<td>ì‚¬ì§„2 : <%=x.getPet_img2() %></td>
+					<td>ì‚¬ì§„3 : <%=x.getPet_img3() %></td>
+					<td><a href="care?idx=<%=x.getPet_idx() %>"></a> ëŒë´„í–‰ë™ </a></td>
 				</tr>
-				<% }%>
-
+				<% } }else{%>
+				<td>íŽ«ì„ ë“±ë¡í•˜ì„¸ìš”</td>
+				<%} %>
 
 
 </body>

@@ -23,7 +23,7 @@ private SqlSessionFactory factory = FactoryManager.getSqlSessionFactory();
 	
 	public List<Tb_pet> my_pet(Tb_login login) {
 		SqlSession session = factory.openSession(true);
-        List<Tb_pet> list = session.selectList("myPet",login.getLogin_email());
+        List<Tb_pet> list = session.selectList("myPet",login);
         session.close();
         return list;
 	}

@@ -6,32 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Main Page</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOORI_main</title>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-	<!-- 카카오 로그인 버튼 -->
-	<div id="login-section">
-		<a href="javascript:kakaoLogin()"> <img src="images/kakao.png"
-			width="222" alt="카카오 로그인 버튼" />
-		</a>
-		<p id="welcome-message" style="display: none;"></p>
-	</div>
-
-	<!-- 챗봇 기능으로 가는 버튼 -->
-	<a href="goChat">
-		<button>Chat</button>
-	</a>
-
-	<!-- 일기장으로 가는 버튼 -->
-	<a href="dairy">
-		<button>Dairy</button>
-	</a>
-
-
 	<script type="text/javascript"
 		src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakao.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<div class="app-container">
+		<header class="app-header">
+			<h2>우리 반려견 케어를 위한 최고의 선택</h2>
+			<h1>WOORI</h1>
+		</header>
+
+		<!-- 카카오 로그인 버튼 -->
+		<div id="login-section" >
+			<a href="javascript:kakaoLogin()"> <img src="images/kakao.png"
+				width="40" alt="카카오 로그인 버튼" />
+			</a>
+		</div>
+			<p id="welcome-message" style="display: none;"></p>
+
+		<div class="image-section">
+			<div class="image-box">
+				<a href="goChat"> <img src="images/note.jpg" alt="note">
+					<div class="text-overlay">
+						<p>우리 강아지 건강부터 귀여운 모습까지 한 번에 챙기기</p>
+					</div>
+				</a>
+			</div>
+			<div class="image-box">
+				<a href="dairy"> <img src="images/chatbot.png" alt="chatbot">
+					<div class="text-overlay">
+						<p>딥러닝 기술을 활용한 AI진단으로 우리 강아지 더욱 살뜰하게 보살피기</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
 
 
 </body>

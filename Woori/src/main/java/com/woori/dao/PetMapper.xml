@@ -2,39 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.woori.dao.ChatDAO">
+<mapper namespace="com.woori.dao.PetDAO">
 
-	<insert id="newPet" parameterType="com.woori.entity.Tb_pet">
-		INSERT INTO tb_pet
-		(pet_name,
-		pet_birthdate,
-		pet_weight,
-		pet_gender,
-		adopted_at,
-		pet_img1,
-		pet_img2,
-		pet_img3,
-		login_email)
-		VALUES
-		(
-		#{pet_name},
-		#{pet_birthdate},
-		#{pet_weight},
-		#{pet_gender},
-		#{adopted_at},
-		#{pet_img1},
-		#{pet_img2},
-		#{pet_img3},
-		#{login_email}
-		)
-		
-	</insert>
+    <!-- 새로운 반려견 정보를 저장하는 매퍼 -->
+    <insert id="newPet" parameterType="com.woori.entity.Tb_pet">
+        INSERT INTO tb_pet
+        (dog_name, dog_gender, dog_weight, dog_birthday, dog_adoption_date, photo1, photo2, photo3)
+        VALUES
+        (#{dogName}, #{dogGender}, #{dogWeight}, #{dogBirthday}, #{dogAdoptionDate}, #{photo1}, #{photo2}, #{photo3})
+    </insert>
 
-	<select id="myPet" resultType="com.woori.entity.Tb_pet">
-		select *
-		from tb_pet
-		where login_email = #{login_email}
-	</select>
+    <!-- 특정 사용자의 반려견 목록을 조회하는 매퍼 -->
+    <select id="myPet" parameterType="com.woori.entity.Tb_login" resultType="com.woori.entity.Tb_pet">
+        SELECT *
+        FROM tb_pet
+        WHERE login_email = #{login_email}
+    </select>
 
 </mapper>
-

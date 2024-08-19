@@ -1,0 +1,113 @@
+body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+}
+
+.app-container {
+	width: 320px;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.app-header h2 {
+	font-size: 14px;
+	margin: 0;
+	font-weight: normal;
+}
+
+.app-header h1 {
+	font-size: 24px;
+	margin: 5px 0;
+}
+
+.message-container {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.message-container p {
+	font-size: 18px;
+}
+
+.button-container {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+button {
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+	background-color: #007bff;
+	color: white;
+	margin: 5px;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:active {
+	background-color: #0056b3;
+}
+
+.image-section {
+	display: grid;
+	gap: 20px;
+}
+
+.image-box {
+	position: relative; /* 부모 요소가 상대 위치를 가짐 */
+	border-radius: 10px;
+	overflow: hidden;
+	width: 100%; /* 부모 컨테이너에 맞춰 이미지 박스 크기 조정 */
+}
+
+.image-box img {
+	width: 100%; /* 이미지를 박스 크기에 맞게 조정 */
+	height: auto;
+	display: block;
+	border-radius: 10px;
+}
+
+.text-overlay {
+	position: absolute; /* 이미지 위에 텍스트를 겹치기 위한 설정 */
+	top: 50%; /* 수직 중앙 정렬 */
+	left: 50%; /* 수평 중앙 정렬 */
+	transform: translate(-50%, -50%); /* 중앙 정렬을 위한 변환 */
+	color: white;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 설정 */
+	padding: 10px;
+	border-radius: 10px;
+	width: 90%; /* 텍스트 박스 너비를 이미지 박스 크기에 맞춤 */
+	box-sizing: border-box;
+	z-index: 1; /* 텍스트가 이미지 위에 표시되도록 설정 */
+}
+
+.text-overlay p {
+	margin: 0;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#login-section {
+	text-align: center;
+	margin-bottom: 20px;
+}

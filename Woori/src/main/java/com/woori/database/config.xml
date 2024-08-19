@@ -19,6 +19,6 @@
     <mapper resource="com/woori/dao/LoginMapper.xml"/>
     <mapper resource="com/woori/dao/PetMapper.xml"/>
     <mapper resource="com/woori/dao/CareMapper.xml"/>
-    
   </mappers>
+  
 </configuration>

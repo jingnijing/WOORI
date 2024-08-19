@@ -22,6 +22,7 @@ public class JoinController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Tb_login user = (Tb_login)session.getAttribute("user");
 		user.setLogin_nick(nick);
+		user.setLogin_src("kakao");
 		System.out.println(user.getId_key()+user.getLogin_nick());
 		LoginDAO dao = new LoginDAO();
 		

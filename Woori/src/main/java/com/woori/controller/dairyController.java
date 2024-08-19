@@ -19,15 +19,28 @@ import com.woori.entity.Tb_pet;
 public class dairyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		Tb_login user = (Tb_login)session.getAttribute("user");
+		System.out.println(user.getLogin_email());
 		
 		PetDAO dao = new PetDAO();
-		Tb_login user = (Tb_login)request.getAttribute("user");
 		List<Tb_pet> pet = dao.my_pet(user);
-
-		HttpSession session = request.getSession();
-		session.setAttribute("pet", pet);
 		
-		String url = "WEB-INF/views/dairy.jsp";
+		for(Tb_pet x : pet) {
+			System.out.println(x.getPet_name());
+		}
+		
+		String url = "";
+		if(pet!=null) {
+			session.setAttribute("pet", pet);
+			url = "WEB-INF/views/dairy.jsp";
+		}else {
+			url = "WEB-INF/views/newPet.jsp";
+		}
+
+
+		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 		
