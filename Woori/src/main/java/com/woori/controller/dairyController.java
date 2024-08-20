@@ -1,6 +1,7 @@
 package com.woori.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -40,7 +41,7 @@ public class dairyController extends HttpServlet {
 			CareDAO Cdao = new CareDAO();
 			
 			List<Tb_pet> pet = dao.my_pet(user);
-			List<Tb_care> care = null;
+			List<Tb_care> care = new ArrayList<>();
 			
 			for (Tb_pet x : pet) {
 				care.add(Cdao.myCare(x.getPet_idx()));

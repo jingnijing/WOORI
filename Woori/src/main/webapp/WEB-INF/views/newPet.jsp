@@ -1,8 +1,4 @@
-<%@page import="com.woori.entity.Tb_care"%>
 <%@page import="com.woori.entity.Tb_login"%>
-<%@page import="com.woori.entity.Tb_pet"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

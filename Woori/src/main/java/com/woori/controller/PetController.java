@@ -50,7 +50,7 @@ public class PetController extends HttpServlet {
 				// (5) 데이터 수집(MultipartRequest 로부터)
 				String dogName = multi.getParameter("dogName");
 		        String dogGender = multi.getParameter("dogGender");
-		        double dogWeight = Integer.parseInt(multi.getParameter("dogWeight"));
+		        double dogWeight = Double.parseDouble(multi.getParameter("dogWeight"));
 		        String dogBirthday = multi.getParameter("dogBirthday");
 		        String dogAdoptionDate = multi.getParameter("dogAdoptionDate");
 		        
