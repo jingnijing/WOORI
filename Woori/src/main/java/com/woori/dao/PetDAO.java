@@ -28,5 +28,11 @@ private SqlSessionFactory factory = FactoryManager.getSqlSessionFactory();
         return list;
 	}
 	
+	public Tb_pet myOnePet(Tb_pet pet) {
+		SqlSession session = factory.openSession(true);
+        Tb_pet p = session.selectOne("myOnePet",pet);
+        session.close();
+        return p;
+	}
 	
 }

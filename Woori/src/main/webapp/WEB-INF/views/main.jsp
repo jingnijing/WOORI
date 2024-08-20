@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
+<%Tb_login user = (Tb_login)session.getAttribute("user"); %>
 	<script type="text/javascript"
 		src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakao.js"></script>
@@ -34,14 +36,16 @@
 
 		<div class="image-section">
 			<div class="image-box">
-				<a href="goChat"> <img src="images/note.jpg" alt="note">
+			
+				<a href="dairy"> <img src="images/note.jpg" alt="note">
 					<div class="text-overlay">
 						<p>우리 강아지 건강부터 귀여운 모습까지 한 번에 챙기기</p>
 					</div>
 				</a>
+				
 			</div>
 			<div class="image-box">
-				<a href="dairy"> <img src="images/chatbot.png" alt="chatbot">
+				<a href="goChat"> <img src="images/chatbot.png" alt="chatbot">
 					<div class="text-overlay">
 						<p>딥러닝 기술을 활용한 AI진단으로 우리 강아지 더욱 살뜰하게 보살피기</p>
 					</div>

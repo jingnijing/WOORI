@@ -2,28 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.woori.dao.CareDAO">
 
-<select id="care" resultType="com.woori.entity.Tb_care">
-select *
-from Tb_care
-where pet_idx = #{pet_idx}
-</select>
-
-<insert id="new_care">
+<insert id="newCare" parameterType="com.woori.dao.CareDAO">
 INSERT INTO tb_care
     (pet_idx, 
-    care_type, 
-    care_content, 
-    cared_at, 
-    care_img1, 
-    care_img2)
+    pet_alergy, 
+    pet_food, 
+    pet_disease, 
+    pet_etc)
 VALUES
-	(#{pet_idx}.
-	#{care_type},
-	#{care_content},
-	#{cared_at},
-	#{care_img1},
-	#{care_img2}
-	)
-</insert>
+    (#{pet_idx}, 
+    #{allergy}, 
+    #{food}, 
+    #{disease}, 
+    #{etc}) 
+    </insert>
+
+<select id="care" resultType="com.woori.entity.Tb_care">
+select *
+from tb_care
+where pet_idx=#{pet_idx}
+</select>
 
 </mapper>
