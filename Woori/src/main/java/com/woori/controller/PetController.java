@@ -91,6 +91,7 @@ public class PetController extends HttpServlet {
 		        care.setFood(food);
 		        care.setEtc(etc);
 		        
+		        System.out.println(allergy+disease+food+etc);
 		        
 		        PetDAO dao = new PetDAO();
 		        int row = dao.new_pet(p);
@@ -99,12 +100,15 @@ public class PetController extends HttpServlet {
 		        	//성공
 		        	Tb_pet pet = dao.myOnePet(p);
 		        	int i = pet.getPet_idx();
+		        	//점검
+		        	System.out.println(i);
+		        	
 		        	care.setPet_idx(i);
 		        	CareDAO cDAO = new CareDAO();
 		        	cDAO.newCare(care);
 		        	
 		        	System.out.println("등록성공");
-		        	url = "WEB-INF/views/main.jsp";
+		        	url = "dairy";
 		        }else {
 		        	System.out.println("펫등록 실패");
 		        	url = "WEB-INF/views/pet.jsp";

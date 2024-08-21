@@ -108,6 +108,8 @@
     </style>
 </head>
 <body>
+
+
     <div class="app-container">
         <header class="app-header">
             <h1>WOORI</h1>
@@ -144,45 +146,28 @@
     </div>
 
     <script>
-        let currentlyDisplayedDog = null;
-    	
-        
-        		
-        const dogs = [
-            {
-                name: '바둑이',
-                gender: 'male',
-                weight: '4.5',
-                birthday: '2020-03-15',
-                adoptionDate: '2020-06-10',
-                careInfo1: '밀가루 알러지',
-                careInfo2: '없음',
-                careInfo3: '하루 2번, 100g',
-                specialNotes: '특별한 사항 없음'
-            },
-            {
-                name: '초코',
-                gender: 'female',
-                weight: '5.2',
-                birthday: '2019-07-21',
-                adoptionDate: '2019-09-01',
-                careInfo1: '닭고기 알러지',
-                careInfo2: '피부염',
-                careInfo3: '하루 3번, 150g',
-                specialNotes: '피부가 약함'
-            },
-            {
-                name: '흰둥이',
-                gender: 'male',
-                weight: '3.8',
-                birthday: '2021-01-12',
-                adoptionDate: '2021-03-20',
-                careInfo1: '없음',
-                careInfo2: '없음',
-                careInfo3: '하루 1번, 80g',
-                specialNotes: '털 빠짐이 심함'
-            }
-        ];
+    <% 
+    List<Tb_pet> pets = (List<Tb_pet>) session.getAttribute("pet");
+    List<Tb_care> cares = (List<Tb_care>) session.getAttribute("care");
+%>
+
+let currentlyDisplayedDog = null;
+
+const dogs = [
+    <% for (int i = 0;i<pets.size();i++) { %>
+    {
+    	 name: '<%=pets.get(i) != null ?  pets.get(i).getPet_name() : "None" %>',
+         gender: '<%=pets.get(i) != null ?   pets.get(i).getPet_gender() : "None"  %>',
+         weight: '<%=pets.get(i) != null ?   pets.get(i).getPet_weight() : "None"  %>',
+         birthday: '<%=pets.get(i) != null ?   pets.get(i).getPet_birthdate() : "None"  %>',
+         adoptionDate: '<%=pets.get(i) != null ?   pets.get(i).getAdopted_at() : "None"  %>',
+        careInfo1: '<%=cares.get(i) != null ?  cares.get(i).getAllergy() : "None" %>',
+        careInfo2: '<%=cares.get(i) != null ?  cares.get(i).getDisease() : "None"%>',
+        careInfo3: '<%=cares.get(i) != null ?  cares.get(i).getFood() : "None"%>',
+        specialNotes: '<%= cares.get(i) != null ? cares.get(i).getEtc() : "None" %>'
+    },
+    <% } %>
+];
 
         const buttonContainer = document.getElementById('buttonContainer');
         const dogInfoDisplay = document.getElementById('dogInfoDisplay');

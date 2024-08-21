@@ -41,14 +41,15 @@ public class dairyController extends HttpServlet {
 			CareDAO Cdao = new CareDAO();
 			
 			List<Tb_pet> pet = dao.my_pet(user);
-			List<Tb_care> care = new ArrayList<>();
+			List<Tb_care> care =  new ArrayList<Tb_care>();
 			
 			for (Tb_pet x : pet) {
 				care.add(Cdao.myCare(x.getPet_idx()));
-				System.out.println(x.getPet_name());
+				System.out.println(x.getPet_name()+x.getPet_idx());
 			}
 				session.setAttribute("pet", pet);
 				session.setAttribute("care", care);
+				System.out.println("care사이즈 : "+care.size()+ "care질병"+care.get(0).getDisease());
 				
 				url = "WEB-INF/views/dairy.jsp";
 		
