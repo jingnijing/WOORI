@@ -6,22 +6,30 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.woori.database.FactoryManager;
 import com.woori.entity.Tb_care;
 import com.woori.entity.Tb_login;
+import com.woori.entity.Tb_pet;
 
 public class CareDAO {
 private SqlSessionFactory factory = FactoryManager.getSqlSessionFactory();
 	
 	public int newCare(Tb_care care) {
 		SqlSession session = factory.openSession(true);
-		int result = session.insert("newCare", care);
+		int row = session.insert("newCare", care);
 		session.close();
-		return result;
+		return row;
 	}
 	
-	public Tb_care myCare(int pet_idx) {
+	public Tb_care myCare(int idx) {
 		SqlSession session = factory.openSession(true);
-		Tb_care result = session.selectOne("care", pet_idx);
+		Tb_care result = session.selectOne("petCare", idx);
         session.close();
         return result;
+	}
+	
+	public int deleteCare(int idx) {
+		SqlSession session = factory.openSession(true);
+		int row = session.delete("deleteCare", idx);
+        session.close();
+        return row;
 	}
 	
 }

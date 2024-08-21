@@ -86,10 +86,10 @@ public class PetController extends HttpServlet {
 		        System.out.println(allergy+" "+disease+" "+food+" "+etc);
 		        
 		        Tb_care care = new Tb_care();
-		        care.setAllergy(allergy);
-		        care.setDisease(disease);
-		        care.setFood(food);
-		        care.setEtc(etc);
+		        care.setPet_alergy(allergy);
+		        care.setPet_disease(disease);
+		        care.setPet_food(food);
+		        care.setPet_etc(etc);
 		        
 		        System.out.println(allergy+disease+food+etc);
 		        

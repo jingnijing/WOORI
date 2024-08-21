@@ -3,7 +3,7 @@
 <%@page import="com.woori.entity.Tb_login"%>
 <%@page import="com.woori.entity.Tb_pet"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 		
 <!DOCTYPE html>
@@ -106,6 +106,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
+    
 </head>
 <body>
 
@@ -136,6 +137,7 @@
             <p><strong>질병:</strong> <span id="displayCareInfo2"></span></p>
             <p><strong>식사량:</strong> <span id="displayCareInfo3"></span></p>
             <p><strong>특이사항:</strong> <span id="displaySpecialNotes"></span></p>
+            <p><a href="petUpdate"><strong>수정</strong></a>   <button id=deleteButton>삭제</button>
         </div>
 
         <!-- 하단 버튼 컨테이너 -->
@@ -146,6 +148,26 @@
     </div>
 
     <script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteButton = document.getElementById('deleteButton');
+        deleteButton.addEventListener('click', promptToDelete);
+    });
+    
+    
+    
+    function formatDate(dateTimeString) {
+        // 공백을 기준으로 날짜와 시간을 분리하여 배열로 만든다
+        const datePart = dateTimeString.split(' ')[0];  // YYYY-MM-DD만 추출
+        const dateParts = datePart.split('-');  // '-'를 기준으로 연도, 월, 일을 분리
+        const year = dateParts[0];
+        const month = dateParts[1];
+        const day = dateParts[2];
+        const result = year+"년 "+month+"월 "+day+"일"
+        // '년 월 일' 형식으로 변환
+        return result;
+    }
+    
     <% 
     List<Tb_pet> pets = (List<Tb_pet>) session.getAttribute("pet");
     List<Tb_care> cares = (List<Tb_care>) session.getAttribute("care");
@@ -161,10 +183,10 @@ const dogs = [
          weight: '<%=pets.get(i) != null ?   pets.get(i).getPet_weight() : "None"  %>',
          birthday: '<%=pets.get(i) != null ?   pets.get(i).getPet_birthdate() : "None"  %>',
          adoptionDate: '<%=pets.get(i) != null ?   pets.get(i).getAdopted_at() : "None"  %>',
-        careInfo1: '<%=cares.get(i) != null ?  cares.get(i).getAllergy() : "None" %>',
-        careInfo2: '<%=cares.get(i) != null ?  cares.get(i).getDisease() : "None"%>',
-        careInfo3: '<%=cares.get(i) != null ?  cares.get(i).getFood() : "None"%>',
-        specialNotes: '<%= cares.get(i) != null ? cares.get(i).getEtc() : "None" %>'
+        careInfo1: '<%=cares.get(i) != null ?  cares.get(i).getPet_alergy() : "None" %>',
+        careInfo2: '<%=cares.get(i) != null ?  cares.get(i).getPet_disease() : "None"%>',
+        careInfo3: '<%=cares.get(i) != null ?  cares.get(i).getPet_food() : "None"%>',
+        specialNotes: '<%= cares.get(i) != null ? cares.get(i).getPet_etc() : "None" %>'
     },
     <% } %>
 ];
@@ -193,8 +215,8 @@ const dogs = [
             document.getElementById('displayDogName').textContent = dog.name;
             document.getElementById('displayDogGender').textContent = dog.gender === 'male' ? '수컷' : '암컷';
             document.getElementById('displayDogWeight').textContent = dog.weight;
-            document.getElementById('displayDogBirthday').textContent = dog.birthday;
-            document.getElementById('displayDogAdoptionDate').textContent = dog.adoptionDate;
+            document.getElementById('displayDogBirthday').textContent = formatDate(dog.birthday);
+            document.getElementById('displayDogAdoptionDate').textContent = formatDate(dog.adoptionDate);
             document.getElementById('displayCareInfo1').textContent = dog.careInfo1;
             document.getElementById('displayCareInfo2').textContent = dog.careInfo2;
             document.getElementById('displayCareInfo3').textContent = dog.careInfo3;
@@ -216,6 +238,21 @@ const dogs = [
         document.getElementById('backBtn').addEventListener('click', function() {
         	window.location.href = 'main';
         });
+        
+        function promptToDelete() {
+            const dogName = prompt("삭제할 강아지의 이름을 입력하세요:");
+            if (dogName) {
+            	 let encDog = encodeURIComponent(dogName);
+            	 const isDuplicate = dogs.some(dog => dog.name == dogName);
+            	 if (isDuplicate) {
+            		    alert("강아지를 삭제합니다");
+               			 window.location.href = "petDelete?name="+encDog;
+            		} else {
+            		    alert("일치하는 이름이 없습니다");
+            		}
+            }
+        }
+        
     </script>
 </body>
 </html>

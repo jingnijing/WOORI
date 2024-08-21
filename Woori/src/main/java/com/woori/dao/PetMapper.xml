@@ -24,4 +24,9 @@
         WHERE login_email = #{login_email} and pet_name=#{pet_name}
     </select>
 	
+	<delete id="deletePet" parameterType="com.woori.entity.Tb_pet">
+	delete from tb_pet
+	where login_email=#{login_email} and pet_name=#{pet_name}
+	</delete>
+	
 </mapper>
