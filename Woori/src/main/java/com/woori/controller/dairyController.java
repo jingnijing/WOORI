@@ -47,7 +47,7 @@ public class dairyController extends HttpServlet {
 				int i = x.getPet_idx();
 				c = Caredao.myCare(i);
 				care.add(c);
-				System.out.println(x.getPet_name());
+				System.out.println("펫이름 : "+x.getPet_name());
 			}
 				session.setAttribute("pet", pet);
 				session.setAttribute("care", care);

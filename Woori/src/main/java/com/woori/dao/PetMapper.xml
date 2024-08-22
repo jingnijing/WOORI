@@ -29,4 +29,18 @@
 	where login_email=#{login_email} and pet_name=#{pet_name}
 	</delete>
 	
+	<update id="updatePet">
+UPDATE tb_pet
+SET
+    pet_name = #{pet_name}, 
+    pet_birthdate = #{pet_birthdate}, 
+    pet_weight = #{pet_weight}, 
+    pet_gender = #{pet_gender}, 
+    adopted_at = #{adopted_at}, 
+    pet_img1 =  #{pet_img1,jdbcType=VARCHAR}, 
+    pet_img2 =  #{pet_img2,jdbcType=VARCHAR}, 
+    pet_img3 =  #{pet_img3,jdbcType=VARCHAR}
+WHERE pet_idx = #{pet_idx}
+	</update>
+	
 </mapper>

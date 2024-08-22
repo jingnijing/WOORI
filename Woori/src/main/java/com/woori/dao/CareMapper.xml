@@ -28,4 +28,14 @@ delete from tb_care
 where PET_IDX = #{idx}
 </delete>
 
+<update id="updateCare" parameterType="com.woori.entity.Tb_care">
+UPDATE tb_care
+SET 
+    pet_alergy = #{pet_alergy}, 
+    pet_food = #{pet_food}, 
+    pet_disease = #{pet_disease}, 
+    pet_etc = #{pet_etc}
+WHERE pet_idx = #{pet_idx}
+</update>
+
 </mapper>

@@ -32,4 +32,11 @@ private SqlSessionFactory factory = FactoryManager.getSqlSessionFactory();
         return row;
 	}
 	
+	public int updateCare(Tb_care care) {
+		SqlSession session = factory.openSession(true);
+		int row = session.update("updateCare", care);
+		session.close();
+		return row;
+	}
+	
 }

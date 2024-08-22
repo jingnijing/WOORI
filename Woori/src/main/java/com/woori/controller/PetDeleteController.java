@@ -43,6 +43,7 @@ public class PetDeleteController extends HttpServlet {
 		CareDAO Cdao = new CareDAO();
 		int cnt = Cdao.deleteCare(idx);
 		int row = Pdao.deletePet(pet);
+		System.out.println(cnt+row);
 		String url = "dairy";
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);

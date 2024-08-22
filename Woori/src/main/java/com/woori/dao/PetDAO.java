@@ -40,8 +40,13 @@ private SqlSessionFactory factory = FactoryManager.getSqlSessionFactory();
         int row = session.delete("deletePet",pet);
         session.close();
         return row;
-		
+	}
 	
+	public int updatePet(Tb_pet pet) {
+		SqlSession session = factory.openSession(true);
+		int result = session.update("updatePet",pet);
+		session.close();
+		return result;
 	}
 	
 }

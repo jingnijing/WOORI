@@ -102,6 +102,7 @@ public class PetController extends HttpServlet {
 		        System.out.println(allergy+disease+food+etc);
 		        
 		        PetDAO dao = new PetDAO();
+		        
 		        int row = dao.new_pet(p);
 		        String url = "";
 		        if(row>0) {
