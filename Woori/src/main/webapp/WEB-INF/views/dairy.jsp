@@ -105,6 +105,31 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        .photo-upload-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .image-box {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
     
 </head>
@@ -128,6 +153,17 @@
 
         <!-- 강아지 정보 표시 영역 -->
         <div class="dog-info" id="dogInfoDisplay">
+        	<div class="photo-upload-container">
+				<div class="image-box" id="imageBox1" style="display: none" >
+					<img id="displayImg1" />
+				</div>
+				<div class="image-box" id="imageBox2" style="display: none" >
+					<img id="displayImg2"/>
+				</div>
+				<div class="image-box" id="imageBox3" style="display: none" >
+					<img id="displayImg3"/>
+				</div>
+			</div>
             <p><strong>이름:</strong> <span id="displayDogName"></span></p>
             <p><strong>성별:</strong> <span id="displayDogGender"></span></p>
             <p><strong>몸무게:</strong> <span id="displayDogWeight"></span> kg</p>
@@ -189,6 +225,9 @@ const dogs = [
          weight: '<%=pets.get(i) != null ?   pets.get(i).getPet_weight() : "None"  %>',
          birthday: '<%=pets.get(i) != null ?   pets.get(i).getPet_birthdate() : "None"  %>',
          adoptionDate: '<%=pets.get(i) != null ?   pets.get(i).getAdopted_at() : "None"  %>',
+         img1: '<%=pets.get(i) != null ?   pets.get(i).getPet_img1() : "None"  %>',
+         img2: '<%=pets.get(i) != null ?   pets.get(i).getPet_img2() : "None"  %>',
+         img3: '<%=pets.get(i) != null ?   pets.get(i).getPet_img3() : "None"  %>',
         careInfo1: '<%=cares.get(i) != null ?  cares.get(i).getPet_alergy() : "None" %>',
         careInfo2: '<%=cares.get(i) != null ?  cares.get(i).getPet_disease() : "None"%>',
         careInfo3: '<%=cares.get(i) != null ?  cares.get(i).getPet_food() : "None"%>',
@@ -218,6 +257,12 @@ const dogs = [
 
         // 강아지 정보를 화면에 표시하는 함수
         function showDogInfo(dog) {
+        	// 강아지 정보 표시 섹션 보이기
+            dogInfoDisplay.style.display = 'block';
+
+            // 현재 표시 중인 강아지 정보로 설정
+            currentlyDisplayedDog = dog.name;
+            
             document.getElementById('displayDogName').textContent = dog.name;
             document.getElementById('displayDogGender').textContent = dog.gender === 'male' ? '수컷' : '암컷';
             document.getElementById('displayDogWeight').textContent = dog.weight;
@@ -227,12 +272,32 @@ const dogs = [
             document.getElementById('displayCareInfo2').textContent = dog.careInfo2;
             document.getElementById('displayCareInfo3').textContent = dog.careInfo3;
             document.getElementById('displaySpecialNotes').textContent = dog.specialNotes;
-
-            // 강아지 정보 표시 섹션 보이기
-            dogInfoDisplay.style.display = 'block';
-
-            // 현재 표시 중인 강아지 정보로 설정
-            currentlyDisplayedDog = dog.name;
+            if(dog.img1!="null"){
+            	disImg1 = document.getElementById('displayImg1')
+            	disImg1.src = "save/"+dog.img1;
+            	imgBox1 = document.getElementById('imageBox1')
+            	imgBox1.style.display = "block";
+            	console.log(dog.img1)
+            }else{
+            	imgBox1.style.display = "none";
+            }
+            if(dog.img2!="null"){
+            	disImg2 = document.getElementById('displayImg2')
+            	disImg2.src = "save/"+dog.img2;
+            	imgBox2 = document.getElementById('imageBox2')
+            	imgBox2.style.display = "block";
+            }else{
+            	imgBox2.style.display = "none";
+            }
+            if(dog.img3!="null"){
+            	disImg3 = document.getElementById('displayImg3')
+            	disImg3.src = "save/"+dog.img3;
+            	imgBox3 = document.getElementById('imageBox3')
+            	imgBox3.style.display = "block";
+            }else{
+            	imgBox3.style.display = "none";
+            }
+            
         }
 
         // 정보입력 버튼 클릭 시 woori_note.html로 이동
