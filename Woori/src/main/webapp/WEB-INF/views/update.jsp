@@ -9,124 +9,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WOORI_note</title>
-    <style>
-        .photo-upload-container {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .image-box {
-            width: 150px;
-            height: 150px;
-            border: 2px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background-color: #f0f0f0;
-            font-size: 12px;
-            color: #666;
-        }
-
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-box input[type="file"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .app-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .app-header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .message-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .info-container {
-            margin-bottom: 20px;
-        }
-
-        .info-container p {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .button-container button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .button-container button:focus {
-            outline: none;
-        }
-
-        .button-container button:disabled {
-            background-color: #cccccc;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/note.css">
 </head>
 <body>
 <% Tb_login user = (Tb_login) session.getAttribute("user"); %>
-<% Tb_pet pet = (Tb_pet)session.getAttribute("upPet"); %>
-<% Tb_care care = (Tb_care)session.getAttribute("upPet"); %>
+<% Tb_pet pet = (Tb_pet)session.getAttribute("updatePet"); %>
+<% Tb_care care = (Tb_care)session.getAttribute("updatecare"); %>
+
 
     <div class="app-container">
         <header class="app-header">
@@ -165,8 +54,8 @@
                 <div class="form-group">
                     <label for="dogGender">성별:</label>
                     <select id="dogGender" name="dogGender">
-                        <option value="male">수</option>
-                        <option value="female">암</option>
+                        <option value="male">수컷</option>
+                        <option value="female">암컷</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -222,7 +111,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const imageBox = document.getElementById(imageBoxId);
-                    imageBox.innerHTML = `<img src="${e.target.result}" alt="미리보기">`;
+                    imageBox.innerHTML =  imageBox.innerHTML = '<img src="' + e.target.result + '" alt="미리보기">';
                 };
                 reader.readAsDataURL(file);
             }

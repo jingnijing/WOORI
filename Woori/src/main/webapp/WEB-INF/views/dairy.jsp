@@ -266,7 +266,7 @@ const dogs = [
             	 const isDuplicate = dogs.some(dog => dog.name == dogName);
             	 if (isDuplicate) {
             		    alert("강아지정보를 수정합니다");
-               			 window.location.href = "petUpdate?name="+encDog;
+               			 window.location.href = "goUpdate?name="+encDog;
             		} else {
             		    alert("일치하는 이름이 없습니다");
             		}

@@ -1,5 +1,6 @@
 package com.woori.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -36,6 +37,13 @@ public class PetController extends HttpServlet {
 				String encoding = "UTF-8";
 				
 				// (4) MultipartRequest
+				
+				File saveDir = new File(savePath);
+				if (!saveDir.exists()) {
+				    saveDir.mkdirs(); // 디렉토리가 없으면 생성
+				    System.out.println("디렉토리 생성");
+				}
+				
 				MultipartRequest multi = new MultipartRequest(
 						request, // request 객체
 						savePath, // 저장경로
@@ -58,7 +66,7 @@ public class PetController extends HttpServlet {
 		        String img1 = multi.getFilesystemName("photo1");
 		        String img2 = multi.getFilesystemName("photo2");
 		        String img3 = multi.getFilesystemName("photo3");
-		        System.out.println(savePath);
+		        System.out.println(savePath+img1+img2+img3);
 		        
 		        HttpSession session = request.getSession();
 				Tb_login user = (Tb_login)session.getAttribute("user");

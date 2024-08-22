@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@page import="com.woori.entity.Tb_login"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,120 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html">
     <title>WOORI_note</title>
-    <style>
-        .photo-upload-container {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .image-box {
-            width: 150px;
-            height: 150px;
-            border: 2px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background-color: #f0f0f0;
-            font-size: 12px;
-            color: #666;
-        }
-
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-box input[type="file"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .app-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .app-header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .message-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .info-container {
-            margin-bottom: 20px;
-        }
-
-        .info-container p {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .button-container button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .button-container button:focus {
-            outline: none;
-        }
-
-        .button-container button:disabled {
-            background-color: #cccccc;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/note.css">
 </head>
 <body>
 <% Tb_login user = (Tb_login) session.getAttribute("user"); %>
@@ -139,18 +29,17 @@
             <div class="photo-upload-container">
                 <div class="image-box" id="imageBox1">
                     이미지를 추가하세요 (+1)
-                    <input type="file" id="photo1" name="photo1" accept="image/*">
+                    <input type="file" id="photo1" name="photo1">
                 </div>
                 <div class="image-box" id="imageBox2">
                     이미지를 추가하세요 (+1)
-                    <input type="file" id="photo2" name="photo2" accept="image/*">
+                    <input type="file" id="photo2" name="photo2">
                 </div>
                 <div class="image-box" id="imageBox3">
                     이미지를 추가하세요 (+1)
-                    <input type="file" id="photo3" name="photo3" accept="image/*">
+                    <input type="file" id="photo3" name="photo3">
                 </div>
             </div>
-            
             <!-- 반려견 정보 입력 섹션 -->
             <div class="info-container">
                 <p>반려견 정보를 입력하세요</p>
@@ -201,7 +90,9 @@
             </div>
         </form>
     </div>
-
+    
+    <!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
     <script>
         // 로그인 상태 및 닉네임 확인
         const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';

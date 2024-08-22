@@ -1,4 +1,4 @@
-package com.woori.controller;
+package com.woori.goController;
 
 import java.io.IOException;
 
@@ -12,11 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import com.woori.dao.CareDAO;
 import com.woori.dao.PetDAO;
+import com.woori.entity.Tb_care;
 import com.woori.entity.Tb_login;
 import com.woori.entity.Tb_pet;
 
-@WebServlet("/petUpdate")
-public class UpdateController extends HttpServlet {
+@WebServlet("/goUpdate")
+public class GoUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -38,9 +39,14 @@ public class UpdateController extends HttpServlet {
 		int idx = onePet.getPet_idx();
 		System.out.println("인덱스"+idx+onePet.getPet_name());
 		
+		Tb_care care = Cdao.myCare(idx);
 		
 		
-		String url = "WEB-INF/views/newPet.jsp";
+		session.setAttribute("updatePet",onePet);
+		session.setAttribute("updateCare", care);
+		
+		
+		String url = "WEB-INF/views/update.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}

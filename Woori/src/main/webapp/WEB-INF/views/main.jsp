@@ -17,11 +17,20 @@
 		src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakao.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript">
-	 function logout() {
-         window.location.href = 'logout';  // 로그아웃 페이지 경로로 이동
-     }
-	</script>
+	<script>
+function logout(){
+    Kakao.Auth.logout(function() {
+        // 로그아웃 성공 후 처리할 내용
+        alert("로그아웃 되었습니다.");
+        // 로그아웃 후 초기화 또는 페이지 이동
+        $("#login-section").show();
+        $("#welcome-message").hide();
+        $("#logoutBtn").hide();
+        // 서버에도 로그아웃 요청을 보낼 수 있음
+        window.location.href = "logout"; // 서버 로그아웃 처리 페이지로 리다이렉트
+    });
+}
+</script>
 	<div class="app-container">
 		<header class="app-header">
 			<h2>우리 반려견 케어를 위한 최고의 선택</h2>
