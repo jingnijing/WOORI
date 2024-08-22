@@ -1,4 +1,3 @@
-<%@ page import="com.woori.entity.Tb_login"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,12 +13,15 @@
 </head>
 <body>
 
-<%Tb_login user = (Tb_login)session.getAttribute("user"); %>
 	<script type="text/javascript"
 		src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="assets/js/kakao.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+	<script type="text/javascript">
+	 function logout() {
+         window.location.href = 'logout';  // 로그아웃 페이지 경로로 이동
+     }
+	</script>
 	<div class="app-container">
 		<header class="app-header">
 			<h2>우리 반려견 케어를 위한 최고의 선택</h2>
@@ -33,7 +35,8 @@
 			</a>
 		</div>
 			<p id="welcome-message" style="display: none;"></p>
-
+			<button id="logoutBtn" style="display: none; align: center;" onclick="logout()">로그아웃</button>
+			
 		<div class="image-section">
 			<div class="image-box">
 			

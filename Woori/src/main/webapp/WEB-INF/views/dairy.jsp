@@ -137,7 +137,8 @@
             <p><strong>질병:</strong> <span id="displayCareInfo2"></span></p>
             <p><strong>식사량:</strong> <span id="displayCareInfo3"></span></p>
             <p><strong>특이사항:</strong> <span id="displaySpecialNotes"></span></p>
-            <p><a href="petUpdate"><strong>수정</strong></a>   <button id=deleteButton>삭제</button>
+            <button id=deleteButton>수정</button>
+            <button id=updateButton>삭제</button>
         </div>
 
         <!-- 하단 버튼 컨테이너 -->
@@ -152,6 +153,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         var deleteButton = document.getElementById('deleteButton');
         deleteButton.addEventListener('click', promptToDelete);
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var updateButton = document.getElementById('updateButton');
+        updateButton.addEventListener('click', promptToUpdate);
     });
     
     
@@ -239,7 +245,7 @@ const dogs = [
         	window.location.href = 'main';
         });
         
-        function promptToDelete() {
+        function promptToUpdate() {
             const dogName = prompt("삭제할 강아지의 이름을 입력하세요:");
             if (dogName) {
             	 let encDog = encodeURIComponent(dogName);
@@ -247,6 +253,20 @@ const dogs = [
             	 if (isDuplicate) {
             		    alert("강아지를 삭제합니다");
                			 window.location.href = "petDelete?name="+encDog;
+            		} else {
+            		    alert("일치하는 이름이 없습니다");
+            		}
+            }
+        }
+        
+        function promptToDelete() {
+            const dogName = prompt("수정할 강아지의 이름을 입력하세요:");
+            if (dogName) {
+            	 let encDog = encodeURIComponent(dogName);
+            	 const isDuplicate = dogs.some(dog => dog.name == dogName);
+            	 if (isDuplicate) {
+            		    alert("강아지정보를 수정합니다");
+               			 window.location.href = "petUpdate?name="+encDog;
             		} else {
             		    alert("일치하는 이름이 없습니다");
             		}

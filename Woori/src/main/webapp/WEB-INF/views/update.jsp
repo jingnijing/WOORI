@@ -1,3 +1,5 @@
+<%@page import="com.woori.entity.Tb_care"%>
+<%@page import="com.woori.entity.Tb_pet"%>
 <%@page import="com.woori.entity.Tb_login"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -123,6 +125,8 @@
 </head>
 <body>
 <% Tb_login user = (Tb_login) session.getAttribute("user"); %>
+<% Tb_pet pet = (Tb_pet)session.getAttribute("upPet"); %>
+<% Tb_care care = (Tb_care)session.getAttribute("upPet"); %>
 
     <div class="app-container">
         <header class="app-header">
@@ -161,8 +165,8 @@
                 <div class="form-group">
                     <label for="dogGender">성별:</label>
                     <select id="dogGender" name="dogGender">
-                        <option value="male">수컷</option>
-                        <option value="female">암컷</option>
+                        <option value="male">수</option>
+                        <option value="female">암</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -237,7 +241,7 @@
 
         // 뒤로 가기 버튼 클릭 시 메인 페이지로 이동
         backBtn.addEventListener('click', function() {
-            window.location.href = 'main';
+            window.location.href = 'dairy';
         });
     </script>
 </body>
