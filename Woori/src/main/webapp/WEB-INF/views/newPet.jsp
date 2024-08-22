@@ -103,12 +103,8 @@
 
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
 	<script>
         // 로그인 상태 및 닉네임 확인
-        const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
-        const nickname = sessionStorage.getItem('nickname');
 
         const backBtn = document.getElementById('backBtn');
 

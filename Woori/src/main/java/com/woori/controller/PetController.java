@@ -63,9 +63,9 @@ public class PetController extends HttpServlet {
 		        String dogAdoptionDate = multi.getParameter("dogAdoptionDate");
 		        
 		        // (6) 파일 저장, 파일이름 수집
-		        String img1 = multi.getFilesystemName("photo1");
-		        String img2 = multi.getFilesystemName("photo2");
-		        String img3 = multi.getFilesystemName("photo3");
+		        String img1 = multi.getFilesystemName("img1");
+		        String img2 = multi.getFilesystemName("img2");
+		        String img3 = multi.getFilesystemName("img3");
 		        System.out.println(savePath+img1+img2+img3);
 		        
 		        HttpSession session = request.getSession();
