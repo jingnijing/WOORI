@@ -228,10 +228,10 @@ const dogs = [
          img1: '<%=pets.get(i) != null ?   pets.get(i).getPet_img1() : "None"  %>',
          img2: '<%=pets.get(i) != null ?   pets.get(i).getPet_img2() : "None"  %>',
          img3: '<%=pets.get(i) != null ?   pets.get(i).getPet_img3() : "None"  %>',
-        careInfo1: '<%=cares.get(i) != null ?  cares.get(i).getPet_alergy() : "None" %>',
-        careInfo2: '<%=cares.get(i) != null ?  cares.get(i).getPet_disease() : "None"%>',
-        careInfo3: '<%=cares.get(i) != null ?  cares.get(i).getPet_food() : "None"%>',
-        specialNotes: '<%= cares.get(i) != null ? cares.get(i).getPet_etc() : "None" %>'
+        careInfo1: '<%=cares.get(i).getPet_alergy() != null ?  cares.get(i).getPet_alergy() : "" %>',
+        careInfo2: '<%=cares.get(i).getPet_disease() != null ?  cares.get(i).getPet_disease() : ""%>',
+        careInfo3: '<%=cares.get(i).getPet_food() != null ?  cares.get(i).getPet_food() : ""%>',
+        specialNotes: '<%= cares.get(i).getPet_etc() != null ? cares.get(i).getPet_etc() : "" %>'
     },
     <% } %>
 ];

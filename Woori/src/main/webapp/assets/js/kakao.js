@@ -26,7 +26,7 @@ function kakaoLogin() {
 							if (response === "success") {
 								$("#login-section").hide();
 
-								$("#welcome-message").text("환영합니다!Woori 펫케어서비스 입니다!").show();
+								$("#welcome-message").html("환영합니다!<br>Woori 펫케어서비스 입니다!").show();
 								$("#logoutBtn").show();
 							} else {
 								window.location.href = "goJoin"; // 실패 시 회원가입 페이지로 이동

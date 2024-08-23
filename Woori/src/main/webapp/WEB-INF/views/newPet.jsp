@@ -55,7 +55,6 @@
 				<div class="form-group">
 					<label for="dogName">이름:</label> <input type="text" id="dogName"
 						name="dogName" required>
-						<p id=result>중복</p>
 				</div>
 				<div class="form-group">
 					<label for="dogGender">성별:</label> <select id="dogGender"

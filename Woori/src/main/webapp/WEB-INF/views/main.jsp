@@ -43,9 +43,10 @@ function logout(){
 				width="40" alt="카카오 로그인 버튼" />
 			</a>
 		</div>
-			<p id="welcome-message" style="display: none;"></p>
-			<button id="logoutBtn" style="display: none; align: center;" onclick="logout()">로그아웃</button>
-			
+		<div style="text-align: center">
+			<strong id="welcome-message" style="display: none;"></strong>
+			<button id="logoutBtn" style="display: none;" onclick="logout()">로그아웃</button>
+		</div>
 		<div class="image-section">
 			<div class="image-box">
 			
