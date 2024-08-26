@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOORI 챗봇</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* 기존 스타일은 그대로 유지 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .app-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .app-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .app-header h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .app-header h1 {
+            margin: 5px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .message-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .chat-log {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background-color: #f4f4f4;
+            justify-content: space-around;
+        }
+
+        .chat-input-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            width: 30%;
+        }
+
+        .chat-input-container button:focus {
+            outline: none;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            margin: 5px 0;
+            padding: 10px 15px;
+            border-radius: 10px;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: white;
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #e5e5ea;
+            color: black;
+            text-align: left;
+            margin-right: auto;
+        }
+
+        .chat-image {
+            max-width: 50%;
+            margin: 5px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h2>우리 반려견 케어를 위한 최고의 선택</h2>
+            <h1>WOORI 챗봇</h1>
+        </header>
+
+        <div class="message-container">
+            <p id="message">반려견 케어에 대해 무엇이든 물어보세요!</p>
+        </div>
+
+        <!-- 챗봇 상호작용 섹션 -->
+        <div class="chat-container">
+            <div class="chat-log" id="chatLog">
+                <!-- 대화 로그가 여기에 추가됩니다. -->
+            </div>
+            <div class="chat-input-container">
+                <button onclick="sendOption('올바르게 사진 찍는 방법')">올바르게 사진 찍는 방법</button>
+                <button onclick="sendOption('비궤양성 각막염이란 ?')">비궤양성 각막염이란 ?</button>
+                <button onclick="sendOption('궤양성 각막염이란 ?')">궤양성 각막염이란 ?</button>
+                <button onclick="sendOption('결막염이란 ?')">결막염이란 ?</button>
+                <button onclick="sendOption('백내장이란 ?')">백내장이란 ?</button>
+            </div>
+            <div class="chat-input-container">
+                <input type="file" id="imageInput" accept="image/*">
+                <button id="imageSendBtn">이미지 전송</button>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="backBtn">뒤로 가기</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // 자바에서 이메일을 받아온 경우 이를 변수로 설정합니다.
+        const userEmail = "{{ user_email }}"; // Flask 템플릿에서 전달된 변수
+        
+        console.log("User email : ", userEmail);
+    
+        function sendOption(option) {
+            addMessageToChatBox(option, 'user-message');
+    
+            // 서버로 선택된 옵션 전송
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/send_option', true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    addMessageToChatBox(response.response, 'bot-message');
+                } else {
+                    alert('선택지 전송에 실패했습니다.');
+                }
+            };
+            xhr.send(JSON.stringify({ option: option, email: userEmail }));
+        }
+    
+        document.getElementById('imageSendBtn').addEventListener('click', function() {
+            var fileInput = document.getElementById('imageInput');
+            var file = fileInput.files[0];  // 첫 번째 파일만 처리
+    
+            if (!file) {
+                alert("이미지 파일을 선택하세요.");
+                return;
+            }
+    
+            var formData = new FormData();
+            formData.append('file', file);
+            formData.append('email', userEmail);  // 이메일 필드 추가
+    
+            // 이미지 미리보기 및 채팅 로그에 추가 (사용자 측에서 이미지 한 번만 보여줌)
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                addImageToChatBox(e.target.result, 'user-message');
+            };
+            reader.readAsDataURL(file);
+    
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/predict', true);
+    
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    addMessageToChatBox(response.prediction, 'bot-message');
+                } else {
+                    alert('이미지 전송에 실패했습니다.');
+                }
+            };
+    
+            xhr.send(formData);
+        });
+    
+        // 채팅 박스에 메시지를 추가하는 함수
+        function addMessageToChatBox(message, className) {
+            var chatLog = document.getElementById('chatLog');
+            var messageElement = document.createElement('div');
+            messageElement.className = 'chat-message ' + className;
+            messageElement.textContent = message;
+            chatLog.appendChild(messageElement);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+    
+        // 채팅 박스에 이미지를 추가하는 함수
+        function addImageToChatBox(src, className) {
+            var chatLog = document.getElementById('chatLog');
+            var imageElement = document.createElement('img');
+            imageElement.className = 'chat-image ' + className;
+            imageElement.src = src;
+            chatLog.appendChild(imageElement);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+    
+        // 뒤로 가기 버튼 기능 (예시)
+        document.getElementById('backBtn').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+    
+</body>
+</html>
