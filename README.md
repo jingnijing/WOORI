@@ -10,12 +10,15 @@
 A. 비궤양성 각막염
 ![crop_D0_0dcbd56a-60a5-11ec-8402-0a7404972c70](https://github.com/user-attachments/assets/aefba5ff-0053-4767-bcdd-3959a3de012e)
 - 각막에 외상이나 감염으로 인해 흰색 반점과 눈물 과다 분비가 나타나며, 눈이 붉어지고 통증을 느끼는 질환
+
 B. 궤양성 각막염
 ![crop_D0_3a9e9ed1-60a5-11ec-8402-0a7404972c70](https://github.com/user-attachments/assets/267745e0-3ac5-4266-99af-fb30b6cef79f)
 - 알레르기나 자가면역 질환으로 인해 눈이 붉어지고 흐릿한 반점이 생기며, 눈물이 많이 분비되고 빛에 민감해지는 질환
+
 C. 백내장
 ![crop_D0_0dbe50e6-60a5-11ec-8402-0a7404972c70](https://github.com/user-attachments/assets/36874d18-8246-4120-8406-537964b21003)
 - 노화나 유전적 요인으로 인해 눈의 렌즈가 뿌옇게 흐려져 시력이 감소하고, 눈동자가 푸르거나 회색빛으로 변하는 질환
+
 D. 결막염
 ![crop_D0_0dd26f9b-60a5-11ec-8402-0a7404972c70](https://github.com/user-attachments/assets/ad982fc3-3c54-4205-af41-770a12b41e2e)
 - 감염이나 알레르기 등으로 인해 눈의 결막이 붉어지고 눈곱이 많이 끼며, 눈이 가렵고 자극을 받아 눈물을 많이 흘리는 질환
